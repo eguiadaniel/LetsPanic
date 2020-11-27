@@ -6,7 +6,7 @@ const context = canvas.getContext('2d');
 
 const width = canvas.width;
 const height = canvas.height;
-const tileCount = 21;
+const tileCount = 10;
 const tileSize = width / tileCount;
 
 //Grid Lines
@@ -39,7 +39,7 @@ class Players {
   this.col = initialCol;
   this.row = initialRow;
   this.width = tileSize;
-  this.height = tileSize;  
+  this.height = tileSize; 
   }
   
   moveUp() {
@@ -67,7 +67,7 @@ class Players {
 }
 
 
-const player = new Players(10,10)
+const player = new Players(2,2)
 
 // Set Initial Array of coordinates
 
@@ -77,9 +77,22 @@ for (let row = 0; row < tileCount; row++){
   for (let column = 0; column < tileCount; column++){
   let newCoordinate = {      
     'row': row,
-    'col': column,
-    //'width': tileSize,
-    //'height': tileSize   
+    'col': column, 
+  }
+  coordinatesArray.push(newCoordinate);
+}
+}
+
+// Set Initial Matrix of coordinates in arrays
+
+let coordinatesArray = [];
+
+for (let row = 0; row < tileCount; row++){
+  corordinatesArray.push()
+  for (let column = 0; column < tileCount; column++){
+  let newCoordinate = {      
+    'row': row,
+    'col': column, 
   }
   coordinatesArray.push(newCoordinate);
 }
@@ -105,9 +118,9 @@ document.addEventListener('keydown', event => {
       break;
   }
 
+  console.log(player.row, player.col)
   drawEverything();
 });
-
 
 function drawEverything() {
   context.clearRect(0, 0, width, height);
@@ -120,10 +133,6 @@ function drawEverything() {
 drawEverything();
 
 
-
-
-
-
 // Eliminate object from coordinatesArray
 
 //item.col === player.col
@@ -131,13 +140,37 @@ drawEverything();
 
 // I want only to remove { row: 3, col: 7}, but it deletes all the objects with row:3 and col: 7.  Podría converitr cada objeto en un string y limpiarlo dejando sólo números. Después convertir la posición del jugador en string y eliminar ese valor.
 
+
 function touchedCoordinates (){
-let touchedCoordinates = coordinatesArray.filter(function(value, index){
+let touchedCoordinatesArray = coordinatesArray.filter(function(value, index){
  return (value.row !== player.row && value.col !== player.col); 
  });
-coordinatesArray = touchedCoordinates;
+coordinatesArray = touchedCoordinatesArray;
 }
 
+
+const index = coordinatesArray.findIndex(coord => coord === {"row": 2, "col": 2} )
+// console.log(index);
+
+/*
+const grid = [
+  { row: 0, col: 0 },
+  { row: 0, col: 1  },
+  { row: 1, col: 0 },
+  { row: 1, col: 1 },
+] 
+
+const grid = [
+  [ true, true ],
+  [ true, true ]
+];
+
+grid[player.row][player.col] = false;
+const grid = [
+  [ true, true ],
+  [ true, true ]
+];
+*/
 
 // Paint Canvas from coordinatesArray
 
