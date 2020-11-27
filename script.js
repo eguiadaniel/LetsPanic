@@ -69,34 +69,53 @@ class Players {
 
 const player = new Players(2,2)
 
-// Set Initial Array of coordinates
+// Initial empty array of arrays
 
-let coordinatesArray = new Array;
+const coordinatesArray = [];
 
-for (let row = 0; row < tileCount; row++){
-  for (let column = 0; column < tileCount; column++){
-  let newCoordinate = {      
-    'row': row,
-    'col': column, 
+for (let i= 0; i < tileCount; i++){
+  // coordinatesArray[i] = new Array(tileCount)
+  coordinatesArray[i] = [...coordinatesArray]
+}
+console.log('------------------coordinatesArray-INITIAL----------------')
+console.log(coordinatesArray)
+
+// Populate array of arrays
+
+for (let i = 0; i < tileCount; i++){
+  for (let j = 0; j < tileCount; j++){
+  coordinatesArray[i][j] = j
+}
+}
+
+// First time Passed Over array
+let coordinatesStatus = [...coordinatesArray];
+
+
+console.log('------------------coordinatesArray-POPULATED----------------')
+console.log(coordinatesArray)
+console.log('------------------coordinatesStaus-SPREAD/COPY----------------')
+console.log(coordinatesStatus)
+
+
+
+function firstOverArray () {
+for (let i = 0; i < tileCount; i++){
+  for (let j = 0; j < tileCount; j++){
+    coordinatesStatus[i][j] = false;
   }
-  coordinatesArray.push(newCoordinate);
 }
 }
 
-// Set Initial Matrix of coordinates in arrays
+// ERROR HERE - why if i only change the coordinateStatus variable it changes both?
+// firstOverArray()
+coordinatesStatus[0][0] = "WHY CLONE?";
 
-let coordinatesArray = [];
 
-for (let row = 0; row < tileCount; row++){
-  corordinatesArray.push()
-  for (let column = 0; column < tileCount; column++){
-  let newCoordinate = {      
-    'row': row,
-    'col': column, 
-  }
-  coordinatesArray.push(newCoordinate);
-}
-}
+console.log('------------------coordinatesArray-CLONE???----------------')
+console.log(coordinatesArray)
+console.log('------------------coordinatesStaus-CLONE???----------------')
+console.log(coordinatesStatus)
 
 // Key bindings
 
@@ -124,97 +143,38 @@ document.addEventListener('keydown', event => {
 
 function drawEverything() {
   context.clearRect(0, 0, width, height);
-  drawGrid();
-  touchedCoordinates();
   paintArray();
+  drawGrid();
   player.draw();
 }
 
 drawEverything();
 
 
-// Eliminate object from coordinatesArray
-
-//item.col === player.col
-//item.row === player.col
-
-// I want only to remove { row: 3, col: 7}, but it deletes all the objects with row:3 and col: 7.  Podría converitr cada objeto en un string y limpiarlo dejando sólo números. Después convertir la posición del jugador en string y eliminar ese valor.
-
-
-function touchedCoordinates (){
-let touchedCoordinatesArray = coordinatesArray.filter(function(value, index){
- return (value.row !== player.row && value.col !== player.col); 
- });
-coordinatesArray = touchedCoordinatesArray;
-}
-
-
-const index = coordinatesArray.findIndex(coord => coord === {"row": 2, "col": 2} )
-// console.log(index);
-
-/*
-const grid = [
-  { row: 0, col: 0 },
-  { row: 0, col: 1  },
-  { row: 1, col: 0 },
-  { row: 1, col: 1 },
-] 
-
-const grid = [
-  [ true, true ],
-  [ true, true ]
-];
-
-grid[player.row][player.col] = false;
-const grid = [
-  [ true, true ],
-  [ true, true ]
-];
-*/
-
-// Paint Canvas from coordinatesArray
+// Paint array of arrays
 
 function paintArray () {
-for ( let i = 0; i < coordinatesArray.length; i++) {
-context.fillStyle = 'green';
-context.fillRect(
-  coordinatesArray[i].row * tileSize,
-  coordinatesArray[i].col * tileSize,
+for (let i = 0; i < tileCount; i++){
+  for (let j = 0; j < tileCount; j++){
+  context.fillStyle = 'green';
+  context.fillRect(
+  coordinatesArray[i][i] * tileSize,
+  coordinatesArray[i][j] * tileSize,
   tileSize,
   tileSize);
+  }
 }
 }
 
+// Update Passed Over array to False
 
-/*
-var workItems =   [
-    { "id": 2616, "category": ".category-copy .category-beauty .category-fashion"}, //this is a match
-    { "id": 1505, "category": ".category-beauty"}, // NOT
-    { "id": 1500, "category": ".category-beauty .category-fashion"}, // NOT
-    { "id": 692, "category": ".category-stills .category-retouching"}, // NOT
-    { "id": 593, "category": ".category-beauty .category-capture .category-fashion .category-product .category-stills .category-stills-retouching "}, // NOT
-    { "id": 636, "category": ".category-beauty .category-copy .category-fashion"}, //this is a match
-    { "id": 547, "category": ".category-fashion .category-lifestyle .category-stills .category-stills-retouching "}, // NOT
-    { "id": 588, "category": ".category-capture .category-recent-work .category-copy .category-beauty .category-fashion"} //this is a match
-];
-
-var	filtersArray = [".category-beauty", ".category-fashion", ".category-copy"];
-
-var filtered = workItems.filter(function(element) {
-   var cats = element.category.split(' ');
-   
-    return cats.filter(function(cat) {
-       return filtersArray.indexOf(cat) > -1;
-    }).length === filtersArray.length;
-});
-	
-console.log(filtered);
-
-*/
-
-
-
-
+function statusUpdate () {
+for (let i = 0; i < tileCount; i++){
+  for (let j = 0; j < tileCount; j++){
+    coordinatesStatus[i][j] = false
+    }
+  }
+}
 
 
 
