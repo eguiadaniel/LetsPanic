@@ -6,7 +6,7 @@ const context = canvas.getContext('2d');
 
 const width = canvas.width;
 const height = canvas.height;
-const tileCount = 10;
+const tileCount = 25;
 const tileSize = width / tileCount;
 
 //Grid Lines
@@ -67,55 +67,33 @@ class Players {
 }
 
 
-const player = new Players(2,2)
+const player = new Players(0,0)
 
-// Initial empty array of arrays
+// Initiate and Populate coordinatesArray 
 
 const coordinatesArray = [];
-
-for (let i= 0; i < tileCount; i++){
-  // coordinatesArray[i] = new Array(tileCount)
-  coordinatesArray[i] = [...coordinatesArray]
+for (let col= 0; col < tileCount; col++){
+  coordinatesArray[col] = new Array(tileCount)
+  //coordinatesArray[row] = [...coordinatesArray]
 }
-console.log('------------------coordinatesArray-INITIAL----------------')
-console.log(coordinatesArray)
-
-// Populate array of arrays
-
-for (let i = 0; i < tileCount; i++){
-  for (let j = 0; j < tileCount; j++){
-  coordinatesArray[i][j] = j
+for (let col = 0; col < tileCount; col++){
+  for (let row = 0; row < tileCount; row++){
+  coordinatesArray[col][row] = row
 }
 }
 
-// First time Passed Over array
-let coordinatesStatus = [...coordinatesArray];
+// Initiate and Populate coordinatesValues
 
-
-console.log('------------------coordinatesArray-POPULATED----------------')
-console.log(coordinatesArray)
-console.log('------------------coordinatesStaus-SPREAD/COPY----------------')
-console.log(coordinatesStatus)
-
-
-
-function firstOverArray () {
-for (let i = 0; i < tileCount; i++){
-  for (let j = 0; j < tileCount; j++){
-    coordinatesStatus[i][j] = false;
-  }
+const coordinatesValues = [];
+for (let col= 0; col < tileCount; col++){
+  coordinatesValues[col] = new Array(tileCount)
+}
+for (let col = 0; col < tileCount; col++){
+  for (let row = 0; row < tileCount; row++){
+  coordinatesValues[col][row] = true
 }
 }
 
-// ERROR HERE - why if i only change the coordinateStatus variable it changes both?
-// firstOverArray()
-coordinatesStatus[0][0] = "WHY CLONE?";
-
-
-console.log('------------------coordinatesArray-CLONE???----------------')
-console.log(coordinatesArray)
-console.log('------------------coordinatesStaus-CLONE???----------------')
-console.log(coordinatesStatus)
 
 // Key bindings
 
@@ -136,16 +114,21 @@ document.addEventListener('keydown', event => {
       player.moveDown();
       break;
   }
-
-  console.log(player.row, player.col)
+   
   drawEverything();
 });
 
 function drawEverything() {
+  coordinatesValues[player.col][player.row] = false
   context.clearRect(0, 0, width, height);
   paintArray();
   drawGrid();
   player.draw();
+  //console.log(player.row, player.col)
+  //console.log(coordinatesValues)
+  
+  
+  
 }
 
 drawEverything();
@@ -154,28 +137,29 @@ drawEverything();
 // Paint array of arrays
 
 function paintArray () {
-for (let i = 0; i < tileCount; i++){
-  for (let j = 0; j < tileCount; j++){
-  context.fillStyle = 'green';
-  context.fillRect(
-  coordinatesArray[i][i] * tileSize,
-  coordinatesArray[i][j] * tileSize,
-  tileSize,
-  tileSize);
-  }
-}
-}
-
-// Update Passed Over array to False
-
-function statusUpdate () {
-for (let i = 0; i < tileCount; i++){
-  for (let j = 0; j < tileCount; j++){
-    coordinatesStatus[i][j] = false
+for (let col = 0; col < tileCount; col++){
+  for (let row = 0; row < tileCount; row++){
+    if( coordinatesValues[col][row] === true) {    
+    //console.log(coordinatesValues[col][row])
+    //console.log(`${coordinatesArray[col][row]}:${coordinatesArray[col][row]}`)
+    context.fillStyle = 'green';
+    context.fillRect(
+    coordinatesArray[col][col] * tileSize,
+    coordinatesArray[col][row] * tileSize,
+    tileSize,
+    tileSize);
     }
   }
 }
+}
 
+/*
+console.log(coordinatesArray)
+console.log(coordinatesValues)
+console.log(player.row, player.col)
+console.log(coordinatesValues[player.row][player.col])
+console.log(coordinatesArray[player.row][player.col])
+*/
 
 
 
