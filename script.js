@@ -6,7 +6,7 @@ const context = canvas.getContext('2d');
 
 const width = canvas.width;
 const height = canvas.height;
-const tileCount = 25;
+const tileCount = 100;
 const tileSize = width / tileCount;
 
 //Grid Lines
@@ -34,14 +34,14 @@ function drawGrid() {
 //Players
 
 class Players {
- 
-  constructor (initialCol, initialRow) {
-  this.col = initialCol;
-  this.row = initialRow;
-  this.width = tileSize;
-  this.height = tileSize; 
+
+  constructor(initialCol, initialRow) {
+    this.col = initialCol;
+    this.row = initialRow;
+    this.width = tileSize;
+    this.height = tileSize;
   }
-  
+
   moveUp() {
     this.row--;
   }
@@ -55,51 +55,51 @@ class Players {
     this.col++;
   }
 
-  draw(){
-  context.fillStyle = 'blue';
-  context.fillRect(
-    (this.col * tileSize) + (0.25 * tileSize), 
-    (this.row * tileSize) + (0.25 * tileSize), 
-    this.width * 0.5,
-    this.height * 0.5
+  draw() {
+    context.fillStyle = 'blue';
+    context.fillRect(
+      (this.col * tileSize) + (0.25 * tileSize),
+      (this.row * tileSize) + (0.25 * tileSize),
+      this.width * 0.5,
+      this.height * 0.5
     )
   }
 }
 
 
-const player = new Players(0,0)
+const player = new Players(0, 0)
 
 // Initiate and Populate coordinatesArray 
 
 const coordinatesArray = [];
-for (let col= 0; col < tileCount; col++){
+for (let col = 0; col < tileCount; col++) {
   coordinatesArray[col] = new Array(tileCount)
   //coordinatesArray[row] = [...coordinatesArray]
 }
-for (let col = 0; col < tileCount; col++){
-  for (let row = 0; row < tileCount; row++){
-  coordinatesArray[col][row] = row
-}
+for (let col = 0; col < tileCount; col++) {
+  for (let row = 0; row < tileCount; row++) {
+    coordinatesArray[col][row] = row
+  }
 }
 
 // Initiate and Populate coordinatesValues
 
 const coordinatesValues = [];
-for (let col= 0; col < tileCount; col++){
+for (let col = 0; col < tileCount; col++) {
   coordinatesValues[col] = new Array(tileCount)
 }
-for (let col = 0; col < tileCount; col++){
-  for (let row = 0; row < tileCount; row++){
-  coordinatesValues[col][row] = true
-}
+for (let col = 0; col < tileCount; col++) {
+  for (let row = 0; row < tileCount; row++) {
+    coordinatesValues[col][row] = true
+  }
 }
 
 
 // Key bindings
 
 document.addEventListener('keydown', event => {
-  event.preventDefault(); 
-  
+  event.preventDefault();
+
   switch (event.keyCode) {
     case 37:
       player.moveLeft();
@@ -114,7 +114,7 @@ document.addEventListener('keydown', event => {
       player.moveDown();
       break;
   }
-   
+
   drawEverything();
 });
 
@@ -126,9 +126,9 @@ function drawEverything() {
   player.draw();
   //console.log(player.row, player.col)
   //console.log(coordinatesValues)
-  
-  
-  
+
+
+
 }
 
 drawEverything();
@@ -136,21 +136,21 @@ drawEverything();
 
 // Paint array of arrays
 
-function paintArray () {
-for (let col = 0; col < tileCount; col++){
-  for (let row = 0; row < tileCount; row++){
-    if( coordinatesValues[col][row] === true) {    
-    //console.log(coordinatesValues[col][row])
-    //console.log(`${coordinatesArray[col][row]}:${coordinatesArray[col][row]}`)
-    context.fillStyle = 'green';
-    context.fillRect(
-    coordinatesArray[col][col] * tileSize,
-    coordinatesArray[col][row] * tileSize,
-    tileSize,
-    tileSize);
+function paintArray() {
+  for (let col = 0; col < tileCount; col++) {
+    for (let row = 0; row < tileCount; row++) {
+      if (coordinatesValues[col][row] === true) {
+        //console.log(coordinatesValues[col][row])
+        //console.log(`${coordinatesArray[col][row]}:${coordinatesArray[col][row]}`)
+        context.fillStyle = 'green';
+        context.fillRect(
+          coordinatesArray[col][col] * tileSize,
+          coordinatesArray[col][row] * tileSize,
+          tileSize,
+          tileSize);
+      }
     }
   }
-}
 }
 
 /*
