@@ -1,4 +1,7 @@
-// Background
+// Images
+
+
+/*
 
 class Image {
   constructor() {
@@ -7,7 +10,7 @@ class Image {
   }
 
   // Paint Image
- 
+
   paintImage() {
     
       for (let col = 0; col < tileCount; col++) {
@@ -29,5 +32,7 @@ class Image {
         }
       }
     }
-
+ 
 }
+ 
+*/

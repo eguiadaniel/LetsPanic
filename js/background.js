@@ -10,7 +10,7 @@ class Background {
     this.coordinatesValues = [];
     this.populateValues();
     //this.paintArray();
-    this.paintImage();
+    //this.paintImage();
 
   }
 
