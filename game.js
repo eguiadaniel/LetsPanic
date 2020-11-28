@@ -2,6 +2,7 @@
 
  class Game {
    constructor () {
+     this.background = new Background();
      this.player = new Player (0,0,"purple");
      this.setKeyBindings();
      this.enemies = [ ];
@@ -48,14 +49,14 @@
   }
 
   draw () {
-    coordinatesValues[this.player.col][this.player.row] = false
+    this.background.coordinatesValues[this.player.col][this.player.row] = false
     context.clearRect(0, 0, width,  height)
-    paintArray();
+    this.background.paintArray();
     for (let enemy of this.enemies) {
       enemy.draw();
     };
 
     this.player.draw();
-    drawGrid()
+    this.background.drawGrid()
   }
 }
