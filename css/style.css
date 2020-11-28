@@ -1,0 +1,27 @@
+.body {
+  background-image: url('../images/star-pattern.png');
+  background-repeat: repeat;
+
+h1 {
+  text-align: center;
+}
+
+.header-image {
+  padding: 20px;
+}
+
+top-header {
+  padding-top: 10px;
+  background-color: lightgray;
+}
+
+.marginauto {
+    margin: 10px auto 20px;
+    display: block;
+
+.canvas {
+    background-image: url(../images/dogImage.jpg);
+    background-size: cover;
+
+    border: solid, 5px;
+}
