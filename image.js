@@ -1,23 +1,15 @@
-const dogImage = new Image();
-dogImage.src = 'images/dogImage.jpg';
-
 // Background
 
 class Image {
   constructor() {
-
     this.image = new Image();
     this.image.src = 'images/dogImage.jpg';
-
   }
 
   // Paint Image
  
   paintImage() {
-
-  this.image.src = 'images/dogImage.jpg';
-    this.image.addEventListener('load', () => {
-
+    
       for (let col = 0; col < tileCount; col++) {
         for (let row = 0; row < tileCount; row++) {
           if (this.coordinatesValues[col][row] === true) {
@@ -36,8 +28,6 @@ class Image {
           }
         }
       }
-    })
-
-}
+    }
 
 }
