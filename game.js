@@ -51,6 +51,7 @@
   draw () {
     this.background.coordinatesValues[this.player.col][this.player.row] = false
     context.clearRect(0, 0, width,  height)
+    //this.background.paintArray();
     this.background.paintArray();
     for (let enemy of this.enemies) {
       enemy.draw();
