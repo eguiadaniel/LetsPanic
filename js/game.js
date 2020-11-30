@@ -31,11 +31,11 @@
   loop () {
     this.runLogic();
     this.draw();
+    this.checkIntersections();  
 
-    // Loops repeats itself : recursive function
-    setTimeout(() => {
+    window.requestAnimationFrame(() => {
       this.loop();
-    }, 1000 / 30);
+    })
   }
 
   runLogic () {
@@ -44,7 +44,7 @@
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
-    if (currentTimeStamp > this.lastEnemyTimeStamp + 2000){
+    if (currentTimeStamp > this.lastEnemyTimeStamp + 20000){
     this.enemies.push(new Enemy(tileCount, Math.floor(Math.random() * tileCount) , "orange", 2, 2));
     this.lastEnemyTimeStamp = currentTimeStamp;
     }
@@ -71,4 +71,38 @@
     //Grid gets painted
     this.background.drawGrid()
   }
+
+ 
+  checkIntersections () {
+    
+    for (let enemy of this.enemies){
+      console.log(`player.col: ${this.player.col*tileSize} | enemy.col: ${enemy.col*tileSize}`)
+      if (this.player.col*tileSize + this.player.width >= enemy.col*tileSize) 
+      {
+        alert('BOOOOM!')
+      }
+    }
+
+  }
+  
 }
+
+/*
+ checkIntersectionBetweenBulletsAndEnemies () {
+    for (let bullet of this.bullets) {
+      for (let enemy of this.enemies) {
+        if (
+          bullet.x >= enemy.x - bullet.width &&
+          bullet.y >= enemy.y &&
+          bullet.y <= enemy.y + enemy.height
+        ) {
+          const indexOfBullet = this.bullets.indexOf(bullet);
+          const indexOfEnemy = this.enemies.indexOf(enemy);
+          this.bullets.splice(indexOfBullet, 1);
+          this.enemies.splice(indexOfEnemy, 1);
+          this.score += 10;
+        }
+      }
+    }
+  }
+        */
