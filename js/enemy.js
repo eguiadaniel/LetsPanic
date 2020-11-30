@@ -3,8 +3,8 @@
 class Enemy {
 
   constructor (initialCol, initialRow, color, width, height ) {
-    this.col = initialCol - (width/2);
-    this.row = initialRow - (height/2);
+    this.col = initialCol  - (width/2);
+    this.row = initialRow  - (height/2);
     this.color = color;
     this.width = width * tileSize;
     this.height = height * tileSize; 

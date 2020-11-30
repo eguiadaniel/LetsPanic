@@ -15,3 +15,16 @@ const game = new Game();
 game.loop();
 
 
+
+let totalValues = 0;
+
+function sumFalseValues () {
+    for (let col = 0; col < tileCount; col++) {
+      for (let row = 0; row < tileCount; row++) {
+        if(this.coordinatesValues[col][row] = false){
+            totalValues += 1
+        }}
+      }
+}
+
+console.log(totalValues)

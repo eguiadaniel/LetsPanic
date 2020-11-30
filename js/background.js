@@ -9,6 +9,7 @@ class Background {
     this.populateCoordinates();
     this.coordinatesValues = [];
     this.populateValues();
+    this.sumFalseValues()
     //this.paintArray();
     //this.paintImage();
 
@@ -80,6 +81,16 @@ class Background {
       }
     }
   }
+
+  sumFalseValues() {    
+    for (let col = 0; col < tileCount; col++) {
+      for (let row = 0; row < tileCount; row++) {
+        if(this.coordinatesValues[col][row] === false){
+            return game.percentage += 1
+        }}
+      }
+} 
+
 
 
 }
