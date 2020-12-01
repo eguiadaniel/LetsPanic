@@ -8,7 +8,7 @@ class Game {
     this.enemies = [];
     this.lastEnemyTimeStamp = 0;
     this.score = 0;
-    this.percentage = 0;
+    this.percentage = [];
     this.lives = 3;
   }
 
@@ -37,14 +37,14 @@ class Game {
     this.checkIntersections();
 
     window.requestAnimationFrame(() => {
-    this.loop();
+      this.loop();
     });
-  }  
- 
+  }
+
   runLogic() {
     // Changes value of coordinate when player is on that tile
+    //this.background.counter--
     this.background.coordinatesValues[this.player.col][this.player.row] = false;
-
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
@@ -83,15 +83,15 @@ class Game {
     this.background.drawGrid();
 
     //Lives, Score, Percentage
-    context.font= '64px sans-serif'
-    context.fillText(this.lives, 400, 300)
-    context.fillText(this.score, 200, 300)
-    context.fillText(this.percentage, 600, 300)
+    context.font = '64px sans-serif';
+    context.fillText(this.lives, 400, 300);
+    context.fillText(this.score, 200, 300);
+    context.fillText(this.percentage, 600, 300);
   }
 
   checkIntersections() {
     for (let enemy of this.enemies) {
-     /* console.log(
+      /* console.log(
         `player.col: ${this.player.col * tileSize} | enemy.col: ${enemy.col * tileSize}
           player.row: ${this.player.row * tileSize} | enemy.row: ${enemy.row * tileSize}`
       ); */
@@ -99,31 +99,12 @@ class Game {
         this.player.col * tileSize + this.player.width >=
           enemy.col * tileSize &&
         this.player.col * tileSize <= enemy.col * tileSize + enemy.width &&
-        this.player.row * tileSize + this.player.width >= enemy.row * tileSize &&
+        this.player.row * tileSize + this.player.width >=
+          enemy.row * tileSize &&
         this.player.row * tileSize <= enemy.row * tileSize + enemy.height
       ) {
-        this.score -= 1
+        this.score -= 1;
       }
     }
   }
 }
-
-/*
- checkIntersectionBetweenBulletsAndEnemies () {
-    for (let bullet of this.bullets) {
-      for (let enemy of this.enemies) {
-        if (
-          bullet.x >= enemy.x - bullet.width &&
-          bullet.y >= enemy.y &&
-          bullet.y <= enemy.y + enemy.height
-        ) {
-          const indexOfBullet = this.bullets.indexOf(bullet);
-          const indexOfEnemy = this.enemies.indexOf(enemy);
-          this.bullets.splice(indexOfBullet, 1);
-          this.enemies.splice(indexOfEnemy, 1);
-          this.score += 10;
-        }
-      }
-    }
-  }
-        */

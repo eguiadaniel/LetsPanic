@@ -15,16 +15,30 @@ const game = new Game();
 game.loop();
 
 
+let falseValues = game.background.coordinatesValues.filter(function (value) {
+  return (value === false);
+});
 
-let totalValues = 0;
+console.log(falseValues)
 
 function sumFalseValues () {
     for (let col = 0; col < tileCount; col++) {
       for (let row = 0; row < tileCount; row++) {
-        if(this.coordinatesValues[col][row] = false){
+        if(background.coordinatesValues[col][row] = false){
             totalValues += 1
         }}
       }
 }
 
-console.log(totalValues)
+
+console.log(falseValues)
+
+let flattened = game.background.coordinatesValues.reduce(
+  function(accumulator, currentValue) {
+    return accumulator.concat(currentValue)
+  },
+  []
+)
+// flattened is [0, 1, 2, 3, 4, 5]
+
+console.log(flattened)

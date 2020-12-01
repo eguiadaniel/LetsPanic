@@ -2,17 +2,16 @@
 
 class Background {
   constructor() {
-
     this.dogImage = new Image();
-    this.drawGrid()
+    this.drawGrid();
     this.coordinatesArray = [];
     this.populateCoordinates();
     this.coordinatesValues = [];
     this.populateValues();
-    this.sumFalseValues()
+    this.countFalseValues = [];
+
     //this.paintArray();
     //this.paintImage();
-
   }
 
   //Grid Lines
@@ -37,16 +36,15 @@ class Background {
     }
   }
 
-  // Initiate and Populate coordinatesArray 
-
+  // Initiate and Populate coordinatesArray
 
   populateCoordinates() {
     for (let col = 0; col < tileCount; col++) {
-      this.coordinatesArray[col] = new Array(tileCount)
+      this.coordinatesArray[col] = new Array(tileCount);
     }
     for (let col = 0; col < tileCount; col++) {
       for (let row = 0; row < tileCount; row++) {
-        this.coordinatesArray[col][row] = row
+        this.coordinatesArray[col][row] = row;
       }
     }
   }
@@ -55,15 +53,14 @@ class Background {
 
   populateValues() {
     for (let col = 0; col < tileCount; col++) {
-      this.coordinatesValues[col] = new Array(tileCount)
+      this.coordinatesValues[col] = new Array(tileCount);
     }
     for (let col = 0; col < tileCount; col++) {
       for (let row = 0; row < tileCount; row++) {
-        this.coordinatesValues[col][row] = true
+        this.coordinatesValues[col][row] = true;
       }
     }
   }
-
 
   // Paint array of arrays
 
@@ -72,25 +69,37 @@ class Background {
       for (let row = 0; row < tileCount; row++) {
         if (this.coordinatesValues[col][row] === true) {
           context.fillStyle = 'green';
+          context.save();
           context.fillRect(
             this.coordinatesArray[col][col] * tileSize,
             this.coordinatesArray[col][row] * tileSize,
             tileSize,
-            tileSize);
+            tileSize
+          );
+          context.restore();
         }
       }
     }
   }
 
-  sumFalseValues() {    
+  countFalseValues() {
+    let flatFalseValues = game.background.coordinatesValues.reduce(function (
+      accumulator,
+      currentValue
+    ) {
+      return accumulator.concat(currentValue);
+    },
+    []);
+    this.countFalseValues = flatFalseValues.filter(Boolean).length;
+  }
+
+  sumFalseValues() {
     for (let col = 0; col < tileCount; col++) {
       for (let row = 0; row < tileCount; row++) {
-        if(this.coordinatesValues[col][row] === false){
-            return game.percentage += 1
-        }}
+        if (this.coordinatesValues[col][row] === false) {
+          return (game.percentage += 1);
+        }
       }
-} 
-
-
-
+    }
+  }
 }
