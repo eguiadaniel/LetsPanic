@@ -7,6 +7,7 @@ class Player {
     this.color = color;
     this.width = tileSize;
     this.height = tileSize;
+    this.direction
   }
 
   moveUp() {
@@ -28,6 +29,12 @@ class Player {
     if (this.col < tileCount - 1) {
       this.col++;
     }
+  }
+
+  runLogic(){
+    
+
+    
   }
 
   draw() {

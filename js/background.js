@@ -99,7 +99,7 @@ class Background {
   
   this.countTotalValues = this.flatValues.length - this.flatValues.filter(Boolean).length;
   this.countPercentageValues = ((1 - this.flatValues.filter(Boolean).length / this.flatValues.length) * 100).toFixed(0);
-  console.log(this.countPercentageValues)  
+  //console.log(this.countPercentageValues)  
 }
   
 }

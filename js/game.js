@@ -10,6 +10,7 @@ class Game {
     this.score = 0;
     this.percentage = 0;
     this.lives = 3;
+    this.active = true;
   }
 
   setKeyBindings() {
@@ -37,9 +38,15 @@ class Game {
     this.checkIntersections();
     //console.log(this.background.countFalseValues)
 
+    if( this.percentage < 10 ){
+       console.log("Not 10% yet!") 
+    }
+
+    if( this.active && this.percentage < 100) {
     window.requestAnimationFrame(() => {
       this.loop();
     });
+    }
   }
 
   runLogic() {
@@ -65,6 +72,10 @@ class Game {
     }
     for (let enemy of this.enemies) {
       enemy.runLogic();
+    }
+
+    if (this.lives <= 0){
+      this.active = false;
     }
   }
 
@@ -92,8 +103,9 @@ class Game {
     this.score = 25 * this.background.countTotalValues;
     context.fillText(this.score, 200, 300);
 
-    this.percentage = `${this.background.countPercentageValues}%`;
-    context.fillText(this.percentage, 600, 300);
+    this.percentage = this.background.countPercentageValues;
+    this.percentageRender = `${this.percentage}%`;
+    context.fillText(this.percentageRender, 600, 300);
   }
 
   checkIntersections() {
@@ -111,6 +123,8 @@ class Game {
         this.player.row * tileSize <= enemy.row * tileSize + enemy.height
       ) {
         this.lives -= 1;
+        const indexOfEnemies = this.enemies.indexOf(enemy);
+        this.enemies.splice(indexOfEnemies, 1);  
       }
     }
   }
