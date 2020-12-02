@@ -35,6 +35,7 @@ class Game {
     this.runLogic();
     this.draw();
     this.checkIntersections();
+    //console.log(this.background.countFalseValues)
 
     window.requestAnimationFrame(() => {
       this.loop();

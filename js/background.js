@@ -9,6 +9,7 @@ class Background {
     this.coordinatesValues = [];
     this.populateValues();
     this.countFalseValues = [];
+    this.flatFalseValues = []
 
     //this.paintArray();
     //this.paintImage();
@@ -82,8 +83,10 @@ class Background {
     }
   }
 
+  // Count false values in array
+
   countFalseValues() {
-    let flatFalseValues = game.background.coordinatesValues.reduce(function (
+    this.flatFalseValues = this.coordinatesValues.reduce(function (
       accumulator,
       currentValue
     ) {
