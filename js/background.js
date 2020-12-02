@@ -8,8 +8,8 @@ class Background {
     this.populateCoordinates();
     this.coordinatesValues = [];
     this.populateValues();
-    this.countFalseValues = [];
-    this.flatFalseValues = []
+    this.flatValues = [];
+    this.countPercentageValues = 0;
 
     //this.paintArray();
     //this.paintImage();
@@ -83,26 +83,21 @@ class Background {
     }
   }
 
-  // Count false values in array
 
-  countFalseValues() {
-    this.flatFalseValues = this.coordinatesValues.reduce(function (
-      accumulator,
-      currentValue
-    ) {
-      return accumulator.concat(currentValue);
-    },
-    []);
-    this.countFalseValues = flatFalseValues.filter(Boolean).length;
-  }
+  // Count false values percentage
 
-  sumFalseValues() {
-    for (let col = 0; col < tileCount; col++) {
-      for (let row = 0; row < tileCount; row++) {
-        if (this.coordinatesValues[col][row] === false) {
-          return (game.percentage += 1);
-        }
-      }
-    }
-  }
+  
+  countPercentage() {
+  this.flatValues = this.coordinatesValues.reduce(function (
+    accumulator,
+    currentValue
+  ) {
+    return accumulator.concat(currentValue);
+  },
+  []);
+  
+  this.countPercentageValues = ((1 - this.flatValues.filter(Boolean).length / this.flatValues.length) * 100).toFixed(2);
+  console.log(this.countPercentageValues)  
+}
+  
 }

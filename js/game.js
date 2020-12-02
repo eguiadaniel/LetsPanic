@@ -46,6 +46,7 @@ class Game {
     // Changes value of coordinate when player is on that tile
     //this.background.counter--
     this.background.coordinatesValues[this.player.col][this.player.row] = false;
+    this.background.countPercentage()
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();

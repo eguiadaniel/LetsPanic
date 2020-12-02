@@ -18,7 +18,7 @@ game.loop();
 // Count true values
 
 
-  let flatFalseValuesMain = game.background.coordinatesValues.reduce(function (
+  let flatValuesMain = game.background.coordinatesValues.reduce(function (
     accumulator,
     currentValue
   ) {
@@ -26,7 +26,7 @@ game.loop();
   },
   []);
 
-  let countFalseValues = ((1 - flatFalseValuesMain.filter(Boolean).length / flatFalseValuesMain.length) * 100).toFixed(2);
+  let countFalseValues = ((1 - flatValuesMain.filter(Boolean).length / flatValuesMain.length) * 100).toFixed(2);
 
 
 /*
@@ -39,5 +39,5 @@ let flattened = game.background.coordinatesValues.reduce(
 // flattened is [0, 1, 2, 3, 4, 5]
 */
 
-console.log(flatFalseValuesMain)
+console.log(flatValuesMain)
 console.log(countFalseValues)
