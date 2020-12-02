@@ -14,30 +14,16 @@ const tileSize = width / tileCount;
 const game = new Game();
 game.loop();
 
+const triggerPlayElement = document.getElementById('trigger-play')
+const triggerPlayAgainElement = document.getElementById('trigger-play-again')
 
-// Count true values
+const sectionScreenPlayElement = document.getElementById('screen-play')
+const sectionScreenPlayingElement = document.getElementById('screen-playing')
+const sectionScreenPlayAgainElement = document.getElementById('screen-play-again')
 
+triggerPlayElement.addEventListener( 'click', () => {
+  sectionScreenPlayElement.style.display = 'none';
+  sectionScreenPlayingElement.style.display = 'initial';
 
-  let flatValuesMain = game.background.coordinatesValues.reduce(function (
-    accumulator,
-    currentValue
-  ) {
-    return accumulator.concat(currentValue);
-  },
-  []);
-
-  let countFalseValues = ((1 - flatValuesMain.filter(Boolean).length / flatValuesMain.length) * 100).toFixed(2);
-
-
-/*
-let flattened = game.background.coordinatesValues.reduce(
-  function(accumulator, currentValue) {
-    return accumulator.concat(currentValue)
-  },
-  []
-)
-// flattened is [0, 1, 2, 3, 4, 5]
-*/
-
-console.log(flatValuesMain)
-console.log(countFalseValues)
+  game.loop();
+});

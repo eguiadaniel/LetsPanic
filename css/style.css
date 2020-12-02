@@ -19,9 +19,10 @@ top-header {
     margin: 10px auto 20px;
     display: block;
 
-.canvas {
-    background-image: url(../images/dogImage.jpg);
-    background-size: cover;
-
-    border: solid, 5px;
 }
+
+.canvas-bg {
+    background-image: url(./images/dogImage.jpg);
+    background-size: cover;
+}
+
