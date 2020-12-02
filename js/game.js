@@ -8,7 +8,7 @@ class Game {
     this.enemies = [];
     this.lastEnemyTimeStamp = 0;
     this.score = 0;
-    this.percentage = [];
+    this.percentage = 0;
     this.lives = 3;
   }
 
@@ -46,7 +46,8 @@ class Game {
     // Changes value of coordinate when player is on that tile
     //this.background.counter--
     this.background.coordinatesValues[this.player.col][this.player.row] = false;
-    this.background.countPercentage()
+    this.background.countPercentage();
+    
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
@@ -87,7 +88,11 @@ class Game {
     //Lives, Score, Percentage
     context.font = '64px sans-serif';
     context.fillText(this.lives, 400, 300);
+
+    this.score = 25 * this.background.countTotalValues;
     context.fillText(this.score, 200, 300);
+
+    this.percentage = `${this.background.countPercentageValues}%`;
     context.fillText(this.percentage, 600, 300);
   }
 
@@ -105,7 +110,7 @@ class Game {
           enemy.row * tileSize &&
         this.player.row * tileSize <= enemy.row * tileSize + enemy.height
       ) {
-        this.score -= 1;
+        this.lives -= 1;
       }
     }
   }

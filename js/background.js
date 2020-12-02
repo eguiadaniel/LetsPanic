@@ -10,6 +10,7 @@ class Background {
     this.populateValues();
     this.flatValues = [];
     this.countPercentageValues = 0;
+    this.countTotalValues = 0;
 
     //this.paintArray();
     //this.paintImage();
@@ -96,7 +97,8 @@ class Background {
   },
   []);
   
-  this.countPercentageValues = ((1 - this.flatValues.filter(Boolean).length / this.flatValues.length) * 100).toFixed(2);
+  this.countTotalValues = this.flatValues.length - this.flatValues.filter(Boolean).length;
+  this.countPercentageValues = ((1 - this.flatValues.filter(Boolean).length / this.flatValues.length) * 100).toFixed(0);
   console.log(this.countPercentageValues)  
 }
   
