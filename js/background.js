@@ -2,7 +2,7 @@
 
 class Background {
   constructor() {
-    this.dogImage = new Image();
+    this.imageCover = new Image();
     this.drawGrid();
     this.coordinatesArray = [];
     this.populateCoordinates();
@@ -100,6 +100,32 @@ class Background {
   this.countTotalValues = this.flatValues.length - this.flatValues.filter(Boolean).length;
   this.countPercentageValues = ((1 - this.flatValues.filter(Boolean).length / this.flatValues.length) * 100).toFixed(0);
   //console.log(this.countPercentageValues)  
+  }
+
+  // Image
+  
+  drawImage() {
+  this.imageCover.src = 'images/dogImageCover.jpg';
+ 
+  this.imageCover.addEventListener('load', () => {  
+  for (let col = 0; col < tileCount; col++) {
+    for (let row = 0; row < tileCount; row++) {
+      if (this.coordinatesValues[col][row] === true) {
+        context.drawImage(this.imageCover, 
+        this.coordinatesArray[col][col] * tileSize, 
+        this.coordinatesArray[col][row] * tileSize, 
+        tileSize, 
+        tileSize, 
+        this.coordinatesArray[col][col] * tileSize, 
+        this.coordinatesArray[col][row] * tileSize, 
+        tileSize -5, 
+        tileSize -5
+        );
+      }
+    }
+  }
+  })
 }
   
+
 }
