@@ -87,10 +87,10 @@ class Game {
     // DOM update
 
     this.headerScore = document.getElementById('header-score');
-    this.headerScore.innerHTML = `<p>Points: <span>${this.score}</span></p>\n`;
+    this.headerScore.innerHTML = `<p><span style="font-size: 2rem;">${this.score}</span> points</p>\n`;
 
     this.headerPercentage = document.getElementById('header-percentage');
-    this.headerPercentage.innerHTML = `<p>Percentage: <span>${this.percentage}%</span></p>\n`;
+    this.headerPercentage.innerHTML = `<p><span style="font-size: 2rem;">${this.percentage}%</span></p>\n`;
 
     this.headerLives = document.getElementById('header-lives');
     //this.headerLives.innerHTML = '❤ ❤ ❤ ❤ ❤ ❤ ❤';
@@ -125,17 +125,17 @@ class Game {
     this.background.drawGrid();
 
     //Lives, Score, Percentage on Canvas
-    /*
-    context.font = '64px sans-serif';
-    context.fillText(this.lives, 400, 300);
+    
+    //context.font = '64px sans-serif';
+    //context.fillText(this.lives, 400, 300);
 
     this.score = 25 * this.background.countTotalValues;
-    context.fillText(this.score, 200, 300);
+    //context.fillText(this.score, 200, 300);
 
     this.percentage = this.background.countPercentageValues;
     this.percentageRender = `${this.percentage}%`;
-    context.fillText(this.percentageRender, 600, 300);
-    */
+    //context.fillText(this.percentageRender, 600, 300);
+    
 
   }
 
