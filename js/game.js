@@ -119,7 +119,7 @@ class Game {
     }
 
     // Player gets painted
-    this.player.draw();
+    this.player.drawImage();
 
     //Grid gets painted
     this.background.drawGrid();
