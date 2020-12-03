@@ -38,14 +38,18 @@ class Game {
     this.checkIntersections();
     //console.log(this.background.countFalseValues)
 
-    if( this.percentage < 10 ){
-       console.log("Not 10% yet!") 
+    if (this.percentage >= 10) {
+      console.log('You won');
     }
 
-    if( this.active && this.percentage < 100) {
-    window.requestAnimationFrame(() => {
-      this.loop();
-    });
+    if (this.active && this.percentage < 100) {
+      window.requestAnimationFrame(() => {
+        this.loop();
+      });
+    } else {
+      sectionScreenPlayElement.style.display = 'none';
+      sectionScreenPlayingElement.style.display = 'none';
+      sectionScreenPlayAgainElement.style.display = 'initial';
     }
   }
 
@@ -54,7 +58,6 @@ class Game {
     //this.background.counter--
     this.background.coordinatesValues[this.player.col][this.player.row] = false;
     this.background.countPercentage();
-    
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
@@ -74,7 +77,7 @@ class Game {
       enemy.runLogic();
     }
 
-    if (this.lives <= 0){
+    if (this.lives <= 0) {
       this.active = false;
     }
   }
@@ -83,7 +86,8 @@ class Game {
     context.clearRect(0, 0, width, height);
 
     //Array of tiles with true coordinates get painted
-    this.background.paintArray();
+    //this.background.paintArray();
+    this.background.drawImage();
 
     // Array of enemies get painted
     for (let enemy of this.enemies) {
@@ -124,8 +128,19 @@ class Game {
       ) {
         this.lives -= 1;
         const indexOfEnemies = this.enemies.indexOf(enemy);
-        this.enemies.splice(indexOfEnemies, 1);  
+        this.enemies.splice(indexOfEnemies, 1);
       }
     }
+  }
+
+  reset() {
+    this.background = new Background();
+    this.player = new Player(0, 0, 'purple');
+    this.enemies = [];
+    this.lastEnemyTimeStamp = 0;
+    this.score = 0;
+    this.percentage = 0;
+    this.lives = 3;
+    this.active = true;
   }
 }

@@ -3,6 +3,7 @@
 class Background {
   constructor() {
     this.imageCover = new Image();
+    this.imageCover.src = 'images/dogImageCover.jpg';
     this.drawGrid();
     this.coordinatesArray = [];
     this.populateCoordinates();
@@ -64,6 +65,26 @@ class Background {
     }
   }
 
+  // Count false values percentage
+
+  countPercentage() {
+    this.flatValues = this.coordinatesValues.reduce(function (
+      accumulator,
+      currentValue
+    ) {
+      return accumulator.concat(currentValue);
+    },
+    []);
+
+    this.countTotalValues =
+      this.flatValues.length - this.flatValues.filter(Boolean).length;
+    this.countPercentageValues = (
+      (1 - this.flatValues.filter(Boolean).length / this.flatValues.length) *
+      100
+    ).toFixed(0);
+    //console.log(this.countPercentageValues)
+  }
+
   // Paint array of arrays
 
   paintArray() {
@@ -84,48 +105,34 @@ class Background {
     }
   }
 
-
-  // Count false values percentage
-
-  
-  countPercentage() {
-  this.flatValues = this.coordinatesValues.reduce(function (
-    accumulator,
-    currentValue
-  ) {
-    return accumulator.concat(currentValue);
-  },
-  []);
-  
-  this.countTotalValues = this.flatValues.length - this.flatValues.filter(Boolean).length;
-  this.countPercentageValues = ((1 - this.flatValues.filter(Boolean).length / this.flatValues.length) * 100).toFixed(0);
-  //console.log(this.countPercentageValues)  
-  }
-
   // Image
-  
+
   drawImage() {
-  this.imageCover.src = 'images/dogImageCover.jpg';
- 
-  this.imageCover.addEventListener('load', () => {  
-  for (let col = 0; col < tileCount; col++) {
-    for (let row = 0; row < tileCount; row++) {
-      if (this.coordinatesValues[col][row] === true) {
-        context.drawImage(this.imageCover, 
-        this.coordinatesArray[col][col] * tileSize, 
-        this.coordinatesArray[col][row] * tileSize, 
-        tileSize, 
-        tileSize, 
-        this.coordinatesArray[col][col] * tileSize, 
-        this.coordinatesArray[col][row] * tileSize, 
-        tileSize -5, 
-        tileSize -5
-        );
+    for (let col = 0; col < tileCount; col++) {
+      for (let row = 0; row < tileCount; row++) {
+        if (this.coordinatesValues[col][row] === true) {
+          context.drawImage(
+            this.imageCover,
+            this.coordinatesArray[col][col] * tileSize,
+            this.coordinatesArray[col][row] * tileSize,
+            tileSize,
+            tileSize,
+            this.coordinatesArray[col][col] * tileSize,
+            this.coordinatesArray[col][row] * tileSize,
+            tileSize - 1,
+            tileSize - 1
+          );
+        }
       }
     }
   }
-  })
-}
-  
 
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 }
