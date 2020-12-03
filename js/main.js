@@ -27,16 +27,18 @@ triggerPlayElement.addEventListener('click', () => {
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
 
-  game.loop();
+  game.background.imageCover.addEventListener('load', () => {
+    game.loop();
+  });
 });
 
 triggerPlayAgainElement.addEventListener('click', () => {
-  debugger;
+  //debugger;
   sectionScreenPlayElement.style.display = 'none';
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
 
-  game.active = true;
+  game.reset();
   game.loop();
 });
 
@@ -64,4 +66,13 @@ dogImageCover.addEventListener('load', () => {
     }
   }
 });
+*/
+
+/*
+const htmlValue = `"<div id=\"header-score\" class=\"col\" style=\"text-align: center\">\n            <p>Points: <span>${game.percentage}</span></p>\n          </div>"`;
+
+<p>Points: <span>${game.percentage}</span></p>\n
+
+var element = document.getElementById("aaa");
+        element.innerHTML = "1";
 */

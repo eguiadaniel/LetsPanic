@@ -8,8 +8,11 @@ class Game {
     this.enemies = [];
     this.lastEnemyTimeStamp = 0;
     this.score = 0;
+    this.headerScore = [];
     this.percentage = 0;
+    this.headerPercentage = [];
     this.lives = 3;
+    this.headerLives;
     this.active = true;
   }
 
@@ -80,6 +83,27 @@ class Game {
     if (this.lives <= 0) {
       this.active = false;
     }
+
+    // DOM update
+
+    this.headerScore = document.getElementById('header-score');
+    this.headerScore.innerHTML = `<p>Points: <span>${this.score}</span></p>\n`;
+
+    this.headerPercentage = document.getElementById('header-percentage');
+    this.headerPercentage.innerHTML = `<p>Percentage: <span>${this.percentage}%</span></p>\n`;
+
+    this.headerLives = document.getElementById('header-lives');
+    //this.headerLives.innerHTML = '❤ ❤ ❤ ❤ ❤ ❤ ❤';
+
+    if (this.lives === 3) {
+      this.headerLives.innerText = '❤ ❤ ❤';
+    } else if (this.lives === 2) {
+      this.headerLives.innerText = '❤ ❤ 💀';
+    } else if (this.lives === 1) {
+      this.headerLives.innerText = '❤ 💀 💀';
+    } else {
+      this.headerLives.innerText = '💀 💀 💀';
+    }
   }
 
   draw() {
@@ -100,7 +124,8 @@ class Game {
     //Grid gets painted
     this.background.drawGrid();
 
-    //Lives, Score, Percentage
+    //Lives, Score, Percentage on Canvas
+    /*
     context.font = '64px sans-serif';
     context.fillText(this.lives, 400, 300);
 
@@ -110,6 +135,8 @@ class Game {
     this.percentage = this.background.countPercentageValues;
     this.percentageRender = `${this.percentage}%`;
     context.fillText(this.percentageRender, 600, 300);
+    */
+
   }
 
   checkIntersections() {
