@@ -1,5 +1,21 @@
 # _Lets Panic v0.1_
 
+## Music
+https://opengameart.org/content/hungry-dino-9-chiptune-tracks-10-sfx
+https://opengameart.org/content/one
+https://opengameart.org/content/fast-fight-battle-music
+https://opengameart.org/content/4-chiptunes-adventure
+https://opengameart.org/content/5-chiptunes-action
+https://opengameart.org/content/nes-shooter-music-5-tracks-3-jingles
+https://opengameart.org/content/generic-8-bit-jrpg-soundtrack
+
+## Sprites
+
+https://xyezawr.itch.io/free-pixel-effects-pack-4-explosions
+https://stealthix.itch.io/animated-slimes
+https://route1rodent.itch.io/16x16-rpg-character-sprite-sheet
+
+
 ## To do list
 
 - [x] Sum False Values, using Reduce, accumulator and Filter 
