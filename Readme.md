@@ -26,9 +26,10 @@ https://route1rodent.itch.io/16x16-rpg-character-sprite-sheet
 - [x] Image: PaintImage VS Compositing and Clipping
 - [x] Target values to DOM elements: score, lives, percentage
 - [x] Remove lives
-- [ ] Character sprites W5D3P4 (hogeitabi, berrogei)
-- [ ] Play Game, Pause, Restart W5D3P4 (berrogeitabat, hamalau) (berrogeitamabost)
-- [ ] Add direction to keybindgs so player never stops moving (sei, berrogeitamasei) // 60fps (bederatzi, bost) //
+- [-] Character sprites W5D3P4 (hogeitabi, berrogei)
+- [-] Enemy sprites W5D3P4 (hogeitabi, berrogei)
+- [-] Play Game, Pause, Restart W5D3P4 (berrogeitabat, hamalau) (berrogeitamabost)
+- [x] Add direction to keybindgs so player never stops moving 
 - [-] 3, 2, 1 countdown to load image
 - [ ] Superpower: handwritten code or algorithm
 - [ ] Perfect Architecture - Canvas as property inside Game class (bat,zortzi,hamabi)

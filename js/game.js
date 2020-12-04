@@ -118,7 +118,7 @@ class Game {
 
     // Array of enemies get painted
     for (let enemy of this.enemies) {
-      enemy.draw();
+      enemy.drawImage();
     }
 
     // Player gets painted

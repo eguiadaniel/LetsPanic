@@ -13,30 +13,34 @@ class Player {
     this.positionX = 0;
     this.positionY = 0;
     this.positionChangeTimestamp = 0;
-    this.direction = 'down';
+    this.direction = null;
   }
 
   moveUp() {
     if (this.row > 0) {
       this.direction = 'up';
+      this.positionY = 3;
       //this.col++;
     }
   }
   moveDown() {
     if (this.row < tileCount - 1) {
       this.direction = 'down';
+      this.positionY = 0;
       //this.row++;
     }
   }
   moveLeft() {
     if (this.col > 0) {
       this.direction = 'left';
+      this.positionY = 1;
       //this.col--;
     }
   }
   moveRight() {
     if (this.col < tileCount - 1) {
       this.direction = 'right';
+      this.positionY = 2;
       //this.col++;
     }
   }
@@ -78,8 +82,10 @@ class Player {
 
   drawImage() {
     if (Date.now() > this.positionChangeTimestamp + 300) {
+      
       this.positionX += 1;
       this.positionX %= 6;
+
       this.positionChangeTimestamp = Date.now();
     }
 
