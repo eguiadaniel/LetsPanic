@@ -35,7 +35,7 @@ https://route1rodent.itch.io/16x16-rpg-character-sprite-sheet
 - [ ] Perfect Architecture - Canvas as property inside Game class (bat,zortzi,hamabi)
 - [ ] Change enemy directions
 - [ ] Bullets
-- [ ] Add Sprites: player and enemies
+- [x] Add Sprites: player and enemies
 - [ ] Add Sounds: music, superpower, live, dead, win
 - [ ] Select game screen
 - [ ] Add second player

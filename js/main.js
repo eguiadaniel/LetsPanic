@@ -5,7 +5,7 @@ const context = canvas.getContext('2d');
 
 const width = canvas.width;
 const height = canvas.height;
-const tileCount = 25;
+const tileCount = 20;
 const tileSize = width / tileCount;
 
 // Instance of Game

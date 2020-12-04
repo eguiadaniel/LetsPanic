@@ -3,9 +3,10 @@
 class Game {
   constructor() {
     this.background = new Background();
-    this.player = new Player(0, 0, 'purple');
+    this.player = new Player(0, 0, this.getRandomColor());
     this.setKeyBindings();
     this.enemies = [];
+    this.enemysize = 1;
     this.lastEnemyTimeStamp = 0;
     this.score = 0;
     this.headerScore = [];
@@ -67,18 +68,31 @@ class Game {
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
-    if (currentTimeStamp > this.lastEnemyTimeStamp + 2000) {
+    if (currentTimeStamp > this.lastEnemyTimeStamp + 1300) {
       this.enemies.push(
         new Enemy(
           tileCount,
           Math.floor(Math.random() * tileCount),
           'orange',
-          2,
-          2
+          this.enemysize,
+          this.enemysize
         )
       );
       this.lastEnemyTimeStamp = currentTimeStamp;
     }
+    
+
+    if(this.percentage <20){
+      this.enemysize = 1;
+    } else if (this.percentage <40){
+      this.enemysize = this.percentage/15;
+    } else if (this.percentage <70){
+      this.enemysize = this.percentage/30;
+    } else if (this.percentage <100){
+      this.enemysize = 3;
+    }
+    
+
     for (let enemy of this.enemies) {
       enemy.runLogic();
     }
@@ -173,4 +187,14 @@ class Game {
     this.lives = 3;
     this.active = true;
   }
+
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
 }
