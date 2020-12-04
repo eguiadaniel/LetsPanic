@@ -3,7 +3,7 @@
 class Background {
   constructor() {
     this.imageCover = new Image();
-    this.imageCover.src = 'images/dogImageCover.jpg';
+    this.imageCover.src = 'images/imageCover.png';
     this.drawGrid();
     this.coordinatesArray = [];
     this.populateCoordinates();
@@ -119,8 +119,8 @@ class Background {
             tileSize,
             this.coordinatesArray[col][col] * tileSize,
             this.coordinatesArray[col][row] * tileSize,
-            tileSize - 1,
-            tileSize - 1
+            tileSize,
+            tileSize
           );
         }
       }
