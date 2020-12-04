@@ -62,6 +62,9 @@ class Game {
     this.background.coordinatesValues[this.player.col][this.player.row] = false;
     this.background.countPercentage();
 
+    //Player Move continiously
+    this.player.runLogic()
+
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
     if (currentTimeStamp > this.lastEnemyTimeStamp + 2000) {

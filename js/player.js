@@ -13,31 +13,58 @@ class Player {
     this.positionX = 0;
     this.positionY = 0;
     this.positionChangeTimestamp = 0;
-    this.direction;
+    this.direction = 'down';
   }
 
   moveUp() {
     if (this.row > 0) {
-      this.row--;
+      this.direction = 'up';
+      //this.col++;
     }
   }
   moveDown() {
     if (this.row < tileCount - 1) {
-      this.row++;
+      this.direction = 'down';
+      //this.row++;
     }
   }
   moveLeft() {
     if (this.col > 0) {
-      this.col--;
+      this.direction = 'left';
+      //this.col--;
     }
   }
   moveRight() {
     if (this.col < tileCount - 1) {
-      this.col++;
+      this.direction = 'right';
+      //this.col++;
     }
   }
 
-  runLogic() {}
+  runLogic() {
+    if (Date.now() > this.positionChangeTimestamp + 100) {
+
+      if( this.row > 0 && this.direction === 'up') {
+        this.row--;
+      }
+
+      if( this.row < tileCount - 1 && this.direction === 'down') {
+        this.row++;
+      }
+
+      if( this.col > 0 && this.direction === 'left') {
+        this.col--;
+      }
+      
+      if( this.col < tileCount - 1 && this.direction === 'right') {
+        this.col++;
+      }
+
+
+      this.positionChangeTimestamp = Date.now();
+    }
+
+  }
 
   draw() {
     context.fillStyle = this.color;
