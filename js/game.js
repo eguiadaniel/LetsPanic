@@ -49,18 +49,22 @@ class Game {
     this.checkIntersections();
     //console.log(this.background.countFalseValues)
 
-    if (this.percentage >= 10) {
-      console.log('You won');
-    }
-
     if (this.active && this.percentage < 100) {
       window.requestAnimationFrame(() => {
         this.loop();
       });
+    } else if (this.active && this.percentage >= 100){
+      sectionScreenPlayElement.style.display = 'none';
+      sectionScreenPlayingElement.style.display = 'none';
+      sectionScreenPlayAgainElement.style.display = 'none';
+      sectionScreenWinElement.style.display = 'initial';
+      win.play()
+      soundtrack.pause()
     } else {
       sectionScreenPlayElement.style.display = 'none';
       sectionScreenPlayingElement.style.display = 'none';
       sectionScreenPlayAgainElement.style.display = 'initial';
+      sectionScreenWinElement.style.display = 'initial';
       loose.play()
       soundtrack.pause()
     }
@@ -162,6 +166,7 @@ class Game {
     this.percentageRender = `${this.percentage}%`;
     //context.fillText(this.percentageRender, 600, 300);
     
+    //Explosion gets painted
 
   }
 

@@ -17,17 +17,19 @@ game.loop();
 
 const triggerPlayElement = document.getElementById('trigger-play');
 const triggerPlayAgainElement = document.getElementById('trigger-play-again');
+const triggerPlayAgainWinElement = document.getElementById('trigger-play-again-win');
 
 const sectionScreenPlayElement = document.getElementById('screen-play');
 const sectionScreenPlayingElement = document.getElementById('screen-playing');
-const sectionScreenPlayAgainElement = document.getElementById(
-  'screen-play-again'
-);
+const sectionScreenPlayAgainElement = document.getElementById('screen-play-again');
+const sectionScreenWinElement = document.getElementById('screen-win');
 
 triggerPlayElement.addEventListener('click', () => {
   sectionScreenPlayElement.style.display = 'none';
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
+  sectionScreenWinElement.style.display = 'none';
+  
 
   soundtrack.play()
 
@@ -41,6 +43,21 @@ triggerPlayAgainElement.addEventListener('click', () => {
   sectionScreenPlayElement.style.display = 'none';
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
+  sectionScreenWinElement.style.display = 'none';
+
+  soundtrack.play()
+  loose.pause()
+
+  game.reset();
+  game.loop();
+});
+
+triggerPlayAgainWinElement.addEventListener('click', () => {
+  //debugger;
+  sectionScreenPlayElement.style.display = 'none';
+  sectionScreenPlayingElement.style.display = 'initial';
+  sectionScreenPlayAgainElement.style.display = 'none';
+  sectionScreenWinElement.style.display = 'none';
 
   soundtrack.play()
   loose.pause()

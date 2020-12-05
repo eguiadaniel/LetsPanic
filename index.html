@@ -69,7 +69,7 @@
     <section id="screen-play-again" class="container" style="display: none">
       <div class="row justify-content-center">
         <div class="d-flex justify-content-center" style="padding: 350px 0">
-          <h2 style="padding: 10px 40px">You lost! 💀 💀 💀</h2>
+          <h2 style="padding: 10px 40px">You´ve lost! 💀 💀 💀</h2>
           <button
             style="padding: 10px 40px; font-size: 2rem;"
             id="trigger-play-again"
@@ -81,8 +81,23 @@
       </div>
     </section>
 
-    <section id="screen-playing" class="container" style="display: none">
+    <section id="screen-win" class="container" style="display: none">
       <div class="row justify-content-center">
+        <div class="d-flex justify-content-center" style="padding: 350px 0">
+          <h2 style="padding: 10px 40px">You´ve won! ♔ ♔ ♔</h2>
+          <button
+            style="padding: 10px 40px; font-size: 2rem;"
+            id="trigger-play-again-win"
+            class="btn btn-outline-secondary btn-play"
+          >
+            Play Again
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-playing" class="container" style="display: none">
+      <div class="row justify-content-center" >
         <div class="">
           <canvas
             id="canvas"
@@ -101,7 +116,7 @@
 
     <script src="./js/enemy.js"></script>
     <script src="./js/player.js"></script>
-    <script src="./js/background.js"></script>
+    <script src="./js/background1.js"></script>
     <script src="./js/game.js"></script>
     <script src="./js/image.js"></script>
     <script src="./js/main.js"></script>
