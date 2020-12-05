@@ -14,12 +14,77 @@ class Enemy {
     this.positionX = 0;
     this.positionY = 3;
     this.positionChangeTimestamp = 0;
-    this.direction = null;
+    this.directionChangeTimestamp = 0;
+    this.directionChangeTimestamp = 0;
+    this.direction = 1;
+  }
+
+
+  
+  moveDown() {
+    
+      this.direction = 0;
+      this.positionY = 0;
+      this.row+=this.width/666;
+    }
+  
+  moveLeft() {
+    
+      this.direction = 1;
+      this.positionY = 1;
+      this.col-=this.width/666;
+    }
+  
+  moveRight() {
+    
+    this.direction = 2;
+    this.positionY = 2;
+    this.col+=this.width/666;
+  }
+  
+  moveUp() {
+    
+      this.direction = 3;
+      this.positionY = 3;
+      this.col+=this.width/666;
+    }
+    
+  changeDirection () {
+    this.direction = Math.floor(Math.random() * 3)
+    if (Date.now() > this.directionChangeTimestamp + 20) {
+    }
   }
 
   runLogic() {
-    this.col -= this.width/666
-  }
+    //this.col -= this.width/666
+
+    this.direction = Math.floor(Math.random() * 3)
+
+      if( this.direction === 0) {
+        this.moveDown();
+      }
+      
+      if( this.direction === 1) {
+        this.moveLeft();
+      }
+      
+      if( this.direction === 2) {
+        this.moveRight();
+      }
+      
+      if( this.direction === 3) {
+        this.moveUp();
+      }
+
+    }
+
+    /*  
+    if (Date.now() > this.directionChangeTimestamp + 40) {
+      this.direction =  game.getRandomDirection()
+    }
+    */
+    
+  
 
   draw(){
   context.fillStyle = this.color;
@@ -36,7 +101,6 @@ class Enemy {
       
       this.positionX += 1;
       this.positionX %= 4;
-      this.positionY
 
       this.positionChangeTimestamp = Date.now();
     }

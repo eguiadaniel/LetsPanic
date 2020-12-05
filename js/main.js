@@ -33,7 +33,7 @@ triggerPlayElement.addEventListener('click', () => {
 });
 
 triggerPlayAgainElement.addEventListener('click', () => {
-  //debugger;
+  
   sectionScreenPlayElement.style.display = 'none';
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
@@ -42,37 +42,5 @@ triggerPlayAgainElement.addEventListener('click', () => {
   game.loop();
 });
 
-//Image
-/*
-const dogImageCover = new Image();
-dogImageCover.src = 'images/dogImageCover.jpg';
+//
 
-dogImageCover.addEventListener('load', () => {
-  for (let col = 0; col < tileCount; col++) {
-    for (let row = 0; row < tileCount; row++) {
-      if (coordinatesValues[col][row] === true) {
-        context.drawImage(
-          dogImageCover,
-          coordinatesArray[col][col] * tileSize,
-          coordinatesArray[col][row] * tileSize,
-          tileSize,
-          tileSize,
-          coordinatesArray[col][col] * tileSize,
-          coordinatesArray[col][row] * tileSize,
-          tileSize - 5,
-          tileSize - 5
-        );
-      }
-    }
-  }
-});
-*/
-
-/*
-const htmlValue = `"<div id=\"header-score\" class=\"col\" style=\"text-align: center\">\n            <p>Points: <span>${game.percentage}</span></p>\n          </div>"`;
-
-<p>Points: <span>${game.percentage}</span></p>\n
-
-var element = document.getElementById("aaa");
-        element.innerHTML = "1";
-*/

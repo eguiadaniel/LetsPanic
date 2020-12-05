@@ -42,10 +42,6 @@ class Game {
     this.checkIntersections();
     //console.log(this.background.countFalseValues)
 
-    if (this.percentage >= 10) {
-      console.log('You won');
-    }
-
     if (this.active && this.percentage < 100) {
       window.requestAnimationFrame(() => {
         this.loop();
@@ -195,6 +191,11 @@ class Game {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+  }
+
+  getRandomDirection() {
+    let direction = Math.floor(Math.random() * 3)
+    return direction;
   }
 
 }
