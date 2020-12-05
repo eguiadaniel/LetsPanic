@@ -53,14 +53,39 @@ class Game {
     }
   }
 
-  runLogic() {
+  turnTiles() {
     // Changes value of coordinate when player is on that tile
     //this.background.counter--
     this.background.coordinatesValues[this.player.col][this.player.row] = false;
+
+    if (this.player.hasPowerup) {
+      const col = this.player.col;
+      const row = this.player.row;
+  
+      const combinations = [
+        [col - 1, row],
+        [col, row],
+        [col + 1, row],
+        [col, row - 1],
+        [col, row + 1]
+      ];
+  
+      for (let combination of combinations) {
+        const combinationColumn = Math.max(combination[0], 0);
+        const combinationRow = Math.max(combination[1], 0);
+        this.background.coordinatesValues[combinationColumn][
+          combinationRow
+        ] = false;
+      }
+    }
+  }
+
+  runLogic() {
+    this.turnTiles();
     this.background.countPercentage();
 
     //Player Move continiously
-    this.player.runLogic()
+    this.player.runLogic();
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
@@ -76,18 +101,16 @@ class Game {
       );
       this.lastEnemyTimeStamp = currentTimeStamp;
     }
-    
 
-    if(this.percentage <20){
+    if (this.percentage < 20) {
       this.enemysize = 1;
-    } else if (this.percentage <40){
-      this.enemysize = this.percentage/15;
-    } else if (this.percentage <70){
-      this.enemysize = this.percentage/30;
-    } else if (this.percentage <100){
+    } else if (this.percentage < 40) {
+      this.enemysize = this.percentage / 15;
+    } else if (this.percentage < 70) {
+      this.enemysize = this.percentage / 30;
+    } else if (this.percentage < 100) {
       this.enemysize = 3;
     }
-    
 
     for (let enemy of this.enemies) {
       enemy.runLogic();
@@ -138,7 +161,7 @@ class Game {
     this.background.drawGrid();
 
     //Lives, Score, Percentage on Canvas
-    
+
     //context.font = '64px sans-serif';
     //context.fillText(this.lives, 400, 300);
 
@@ -148,8 +171,6 @@ class Game {
     this.percentage = this.background.countPercentageValues;
     this.percentageRender = `${this.percentage}%`;
     //context.fillText(this.percentageRender, 600, 300);
-    
-
   }
 
   checkIntersections() {
@@ -194,8 +215,7 @@ class Game {
   }
 
   getRandomDirection() {
-    let direction = Math.floor(Math.random() * 3)
+    let direction = Math.floor(Math.random() * 3);
     return direction;
   }
-
 }
