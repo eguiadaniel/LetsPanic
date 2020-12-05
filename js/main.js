@@ -11,6 +11,8 @@ const tileSize = width / tileCount;
 // Instance of Game
 
 const game = new Game();
+const soundtrack = new Audio(`audio/soundtrack.wav`)
+
 game.loop();
 
 const triggerPlayElement = document.getElementById('trigger-play');
@@ -27,6 +29,8 @@ triggerPlayElement.addEventListener('click', () => {
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
 
+  soundtrack.play()
+
   game.background.imageCover.addEventListener('load', () => {
     game.loop();
   });
@@ -37,6 +41,9 @@ triggerPlayAgainElement.addEventListener('click', () => {
   sectionScreenPlayElement.style.display = 'none';
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
+
+  soundtrack.play()
+  loose.pause()
 
   game.reset();
   game.loop();

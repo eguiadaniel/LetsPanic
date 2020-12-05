@@ -1,5 +1,12 @@
 //Game
 
+
+const explosion = new Audio(`audio/explosion.wav`)
+const positive = new Audio(`audio/positive.ogg`)
+const loose = new Audio(`audio/loose.mp3`)
+const win = new Audio(`audio/win.mp3`)
+
+
 class Game {
   constructor() {
     this.background = new Background();
@@ -54,6 +61,8 @@ class Game {
       sectionScreenPlayElement.style.display = 'none';
       sectionScreenPlayingElement.style.display = 'none';
       sectionScreenPlayAgainElement.style.display = 'initial';
+      loose.play()
+      soundtrack.pause()
     }
   }
 
@@ -119,7 +128,7 @@ class Game {
     } else if (this.lives === 1) {
       this.headerLives.innerText = '❤ 💀 💀';
     } else {
-      this.headerLives.innerText = '💀 💀 💀';
+      this.headerLives.innerText = '💀 💀 💀';      
     }
   }
 
@@ -173,6 +182,7 @@ class Game {
         this.lives -= 1;
         const indexOfEnemies = this.enemies.indexOf(enemy);
         this.enemies.splice(indexOfEnemies, 1);
+        explosion.play();
       }
     }
   }
