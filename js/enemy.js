@@ -4,8 +4,8 @@ class Enemy {
   constructor(initialCol, initialRow, color, width, height) {
     this.enemyImage = new Image();
     this.enemyImage.src = 'images/enemy.png';
-    this.col = initialCol - width / 2;
-    this.row = initialRow - height / 2;
+    this.col = initialCol;
+    this.row = initialRow;
     this.color = color;
     this.width = width * tileSize;
     this.height = height * tileSize;
@@ -13,31 +13,30 @@ class Enemy {
     this.positionY = 3;
     this.positionChangeTimestamp = 0;
     this.directionChangeTimestamp = 0;
-    this.directionChangeTimestamp = 0;
     this.direction = 1;
   }
 
   moveDown() {
-    this.direction = 0;
+    /*this.direction = 0;*/
     this.positionY = 0;
     this.row += this.width / 666;
   }
 
   moveLeft() {
-    this.direction = 1;
+    // this.direction = 1;
     this.positionY = 1;
     this.col -= this.width / 666;
   }
 
   
   moveUp() {
-    this.direction = 2;
+    // this.direction = 2;
     this.positionY = 3;
     this.col += this.width / 666;
   }
   
   moveRight() {
-    this.direction = 3;
+    // this.direction = 3;
     this.positionY = 2;
     this.col += this.width / 666;
   }

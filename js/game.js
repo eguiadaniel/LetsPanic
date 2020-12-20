@@ -1,11 +1,9 @@
 //Game
 
-
-const explosion = new Audio(`audio/explosion.wav`)
-const positive = new Audio(`audio/positive.ogg`)
-const loose = new Audio(`audio/loose.mp3`)
-const win = new Audio(`audio/win.mp3`)
-
+const explosion = new Audio(`audio/explosion.wav`);
+const positive = new Audio(`audio/positive.ogg`);
+const loose = new Audio(`audio/loose.mp3`);
+const win = new Audio(`audio/win.mp3`);
 
 class Game {
   constructor() {
@@ -14,6 +12,7 @@ class Game {
     this.setKeyBindings();
     this.enemies = [];
     this.enemysize = 1;
+    this.populatetime = 1300;
     this.lastEnemyTimeStamp = 0;
     this.score = 0;
     this.headerScore = [];
@@ -53,20 +52,20 @@ class Game {
       window.requestAnimationFrame(() => {
         this.loop();
       });
-    } else if (this.active && this.percentage >= 100){
+    } else if (this.active && this.percentage >= 100) {
       sectionScreenPlayElement.style.display = 'none';
       sectionScreenPlayingElement.style.display = 'none';
       sectionScreenPlayAgainElement.style.display = 'none';
       sectionScreenWinElement.style.display = 'initial';
-      win.play()
-      soundtrack.pause()
+      win.play();
+      soundtrack.pause();
     } else {
       sectionScreenPlayElement.style.display = 'none';
       sectionScreenPlayingElement.style.display = 'none';
       sectionScreenPlayAgainElement.style.display = 'initial';
       sectionScreenWinElement.style.display = 'initial';
-      loose.play()
-      soundtrack.pause()
+      loose.play();
+      soundtrack.pause();
     }
   }
 
@@ -77,11 +76,11 @@ class Game {
     this.background.countPercentage();
 
     //Player Move continiously
-    this.player.runLogic()
+    this.player.runLogic();
 
     // Enemies populated depending time passed
     const currentTimeStamp = Date.now();
-    if (currentTimeStamp > this.lastEnemyTimeStamp + 1300) {
+    if (currentTimeStamp > this.lastEnemyTimeStamp + this.populatetime) {
       this.enemies.push(
         new Enemy(
           tileCount,
@@ -93,18 +92,20 @@ class Game {
       );
       this.lastEnemyTimeStamp = currentTimeStamp;
     }
-    
 
-    if(this.percentage <20){
+    if (this.percentage < 20) {
       this.enemysize = 1;
-    } else if (this.percentage <40){
-      this.enemysize = this.percentage/15;
-    } else if (this.percentage <70){
-      this.enemysize = this.percentage/30;
-    } else if (this.percentage <100){
-      this.enemysize = 3;
+      this.populatetime = 1300;
+    } else if (this.percentage < 40) {
+      this.enemysize = 1; /*this.percentage/15;*/
+      this.populatetime = 1100;
+    } else if (this.percentage < 70) {
+      this.populatetime = 850;
+      this.enemysize = 1; /*this.percentage/30;*/
+    } else if (this.percentage < 100) {
+      this.enemysize = 1;
+      this.populatetime = 600;
     }
-    
 
     for (let enemy of this.enemies) {
       enemy.runLogic();
@@ -132,7 +133,7 @@ class Game {
     } else if (this.lives === 1) {
       this.headerLives.innerText = '❤ 💀 💀';
     } else {
-      this.headerLives.innerText = '💀 💀 💀';      
+      this.headerLives.innerText = '💀 💀 💀';
     }
   }
 
@@ -155,7 +156,7 @@ class Game {
     this.background.drawGrid();
 
     //Lives, Score, Percentage on Canvas
-    
+
     //context.font = '64px sans-serif';
     //context.fillText(this.lives, 400, 300);
 
@@ -165,9 +166,8 @@ class Game {
     this.percentage = this.background.countPercentageValues;
     this.percentageRender = `${this.percentage}%`;
     //context.fillText(this.percentageRender, 600, 300);
-    
-    //Explosion gets painted
 
+    //Explosion gets painted
   }
 
   checkIntersections() {
@@ -185,6 +185,9 @@ class Game {
         this.player.row * tileSize <= enemy.row * tileSize + enemy.height
       ) {
         this.lives -= 1;
+        this.player.col = 0;
+        this.player.row = 0;
+        this.player.direction = "";
         const indexOfEnemies = this.enemies.indexOf(enemy);
         this.enemies.splice(indexOfEnemies, 1);
         explosion.play();
@@ -211,5 +214,4 @@ class Game {
     }
     return color;
   }
-
 }
