@@ -95,16 +95,16 @@ class Game {
 
     if (this.percentage < 20) {
       this.enemysize = 1;
-      this.populatetime = 1300;
+      this.populatetime = 1500;
     } else if (this.percentage < 40) {
-      this.enemysize = 1; /*this.percentage/15;*/
-      this.populatetime = 1100;
+      this.enemysize = 2; /*this.percentage/15;*/
+      this.populatetime = 1300;
     } else if (this.percentage < 70) {
-      this.populatetime = 850;
-      this.enemysize = 1; /*this.percentage/30;*/
+      this.populatetime = 1100;
+      this.enemysize = 2; /*this.percentage/30;*/
     } else if (this.percentage < 100) {
-      this.enemysize = 1;
-      this.populatetime = 600;
+      this.enemysize = 2;
+      this.populatetime = 1000;
     }
 
     for (let enemy of this.enemies) {
@@ -187,7 +187,7 @@ class Game {
         this.lives -= 1;
         this.player.col = 0;
         this.player.row = 0;
-        this.player.direction = "";
+        this.player.direction = '';
         const indexOfEnemies = this.enemies.indexOf(enemy);
         this.enemies.splice(indexOfEnemies, 1);
         explosion.play();
