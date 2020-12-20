@@ -22,7 +22,7 @@ top-header {
 }
 
 .canvas-bg {
-    background-image: url(./images/dogImage.jpg);
+    background-image: url(./images/imageBackground.jpg);
     background-size: cover;
 }
 

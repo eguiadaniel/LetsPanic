@@ -5,23 +5,27 @@ const context = canvas.getContext('2d');
 
 const width = canvas.width;
 const height = canvas.height;
-const tileCount = 20;
+const tileCount = 25;
 const tileSize = width / tileCount;
 
 // Instance of Game
 
 const game = new Game();
-const soundtrack = new Audio(`audio/soundtrack.wav`)
+const soundtrack = new Audio(`audio/soundtrack.wav`);
 
 game.loop();
 
 const triggerPlayElement = document.getElementById('trigger-play');
 const triggerPlayAgainElement = document.getElementById('trigger-play-again');
-const triggerPlayAgainWinElement = document.getElementById('trigger-play-again-win');
+const triggerPlayAgainWinElement = document.getElementById(
+  'trigger-play-again-win'
+);
 
 const sectionScreenPlayElement = document.getElementById('screen-play');
 const sectionScreenPlayingElement = document.getElementById('screen-playing');
-const sectionScreenPlayAgainElement = document.getElementById('screen-play-again');
+const sectionScreenPlayAgainElement = document.getElementById(
+  'screen-play-again'
+);
 const sectionScreenWinElement = document.getElementById('screen-win');
 
 triggerPlayElement.addEventListener('click', () => {
@@ -29,9 +33,8 @@ triggerPlayElement.addEventListener('click', () => {
   sectionScreenPlayingElement.style.display = 'initial';
   sectionScreenPlayAgainElement.style.display = 'none';
   sectionScreenWinElement.style.display = 'none';
-  
 
-  soundtrack.play()
+  soundtrack.play();
 
   game.background.imageCover.addEventListener('load', () => {
     game.loop();
@@ -45,8 +48,8 @@ triggerPlayAgainElement.addEventListener('click', () => {
   sectionScreenPlayAgainElement.style.display = 'none';
   sectionScreenWinElement.style.display = 'none';
 
-  soundtrack.play()
-  loose.pause()
+  soundtrack.play();
+  loose.pause();
 
   game.reset();
   game.loop();
@@ -59,8 +62,8 @@ triggerPlayAgainWinElement.addEventListener('click', () => {
   sectionScreenPlayAgainElement.style.display = 'none';
   sectionScreenWinElement.style.display = 'none';
 
-  soundtrack.play()
-  loose.pause()
+  soundtrack.play();
+  loose.pause();
 
   game.reset();
   game.loop();
