@@ -14,31 +14,31 @@ class Enemy {
     this.positionChangeTimestamp = 0;
     this.directionChangeTimestamp = 0;
     this.direction = 1;
+    this.speed = 1000;
   }
 
   moveDown() {
     /*this.direction = 0;*/
     this.positionY = 0;
-    this.row += this.width / 666;
+    this.row += this.width / this.speed;
   }
 
   moveLeft() {
     // this.direction = 1;
     this.positionY = 3;
-    this.col -= this.width / 666;
+    this.col -= this.width / this.speed;
   }
 
-  
   moveUp() {
     // this.direction = 2;
     this.positionY = 2;
-    this.row -= this.width / 666;
+    this.row -= this.width / this.speed;
   }
-  
+
   moveRight() {
     // this.direction = 3;
     this.positionY = 1;
-    this.col += this.width / 666;
+    this.col += this.width / this.speed;
   }
 
   changeDirection() {
@@ -66,7 +66,6 @@ class Enemy {
       this.moveUp();
     }
   }
-
 
   draw() {
     context.fillStyle = this.color;

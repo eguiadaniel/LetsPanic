@@ -94,17 +94,17 @@ class Game {
     }
 
     if (this.percentage < 20) {
-      this.enemysize = 1;
-      this.populatetime = 1500;
+      this.enemysize = 2;
+      this.populatetime = 3500;
     } else if (this.percentage < 40) {
       this.enemysize = 2; /*this.percentage/15;*/
-      this.populatetime = 1300;
+      this.populatetime = 2500;
     } else if (this.percentage < 70) {
-      this.populatetime = 1100;
+      this.populatetime = 2000;
       this.enemysize = 2; /*this.percentage/30;*/
     } else if (this.percentage < 100) {
       this.enemysize = 2;
-      this.populatetime = 1000;
+      this.populatetime = 1500;
     }
 
     for (let enemy of this.enemies) {
