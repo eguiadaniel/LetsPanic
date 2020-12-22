@@ -7,8 +7,8 @@ class Enemy {
     this.col = initialCol;
     this.row = initialRow;
     this.color = color;
-    this.width = width * tileSize;
-    this.height = height * tileSize;
+    this.width = width * tileSize * 2;
+    this.height = height * tileSize * 2;
     this.positionX = 0;
     this.positionY = 3;
     this.positionChangeTimestamp = 0;
@@ -54,7 +54,7 @@ class Enemy {
       this.direction = Math.floor(Math.random() * 3);
     }
 
-    if (this.direction === 0 && this.row < tileCount - 1) {
+    if (this.direction === 0 && this.row < tileCount - 2) {
       this.moveDown();
     }
 

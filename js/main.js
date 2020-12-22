@@ -11,7 +11,7 @@ const tileSize = width / tileCount;
 // Instance of Game
 
 const game = new Game();
-const soundtrack = new Audio(`audio/soundtrack.wav`);
+const soundtrack = new Audio('audio/soundtrack.wav');
 
 game.loop();
 

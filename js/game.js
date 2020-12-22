@@ -52,6 +52,7 @@ class Game {
       window.requestAnimationFrame(() => {
         this.loop();
       });
+
     } else if (this.active && this.percentage >= 100) {
       sectionScreenPlayElement.style.display = 'none';
       sectionScreenPlayingElement.style.display = 'none';
@@ -59,6 +60,7 @@ class Game {
       sectionScreenWinElement.style.display = 'initial';
       win.play();
       soundtrack.pause();
+
     } else {
       sectionScreenPlayElement.style.display = 'none';
       sectionScreenPlayingElement.style.display = 'none';
@@ -94,16 +96,16 @@ class Game {
     }
 
     if (this.percentage < 20) {
-      this.enemysize = 2;
+      this.enemysize = 1;
       this.populatetime = 3500;
     } else if (this.percentage < 40) {
-      this.enemysize = 2; /*this.percentage/15;*/
+      this.enemysize = 1; /*this.percentage/15;*/
       this.populatetime = 2500;
     } else if (this.percentage < 70) {
       this.populatetime = 2000;
-      this.enemysize = 2; /*this.percentage/30;*/
+      this.enemysize = 1; /*this.percentage/30;*/
     } else if (this.percentage < 100) {
-      this.enemysize = 2;
+      this.enemysize = 1;
       this.populatetime = 1500;
     }
 
